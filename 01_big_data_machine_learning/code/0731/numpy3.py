@@ -1,4 +1,3 @@
-
 # numpy 배열 연산 예제
 import numpy as np  # numpy 라이브러리 임포트
 

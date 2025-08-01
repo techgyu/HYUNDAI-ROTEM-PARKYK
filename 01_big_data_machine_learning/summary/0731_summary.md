@@ -1,4 +1,4 @@
-# Numpy와 Python을 활용한 배열 및 통계 기초 요약
+# 07/31 Numpy와 Python을 활용한 배열 및 통계 기초 요약
 
 ## 1. Python으로 직접 구현한 통계 함수
 

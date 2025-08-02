@@ -30,3 +30,17 @@ print('x:\n', x)  # x 출력
 print('y:\n', y)  # y 출력
 kbs = x + y
 print('z:\n', kbs) # 브로드캐스팅을 이용하여 x와 y를 더함
+
+a = np.array([0, 1, 2])
+b = np.array([5, 5, 5])
+print(a + b) # a와 b를 더함, 브로드캐스팅 적용됨
+print(a + 5) # a에 5를 더함, 브로드캐스팅 적용됨
+
+print('\n 넘파이로 파일 i/o')
+np.save('numpy4etc.npy', x) # x 배열을 numpy4etc.npy 파일로 저장, binary 형태로 저장
+np.savetxt('numpy4etc.txt', x) # x 배열을 numpy4etc.txt 파일로 저장, 텍스트 형태로 저장
+temp = np.load('numpy4etc.npy') # numpy4etc.npy 파일에서 x 배열을 불러옴
+print('temp:\n', temp)  # 불러온 배열 출력
+
+mydatas = np.loadtxt('numpy4etc.txt', delimiter=' ')  # numpy4etc.txt 파일에서 데이터를 불러옴
+print('mydatas:\n', mydatas)  # 불러온 데이터 출력

@@ -24,6 +24,7 @@ print('----------3) step3 : unifunc 관련문제-----------')
 # 요소값 누적합 :      cumsum()
 
 print("1. 표준정규분포를 따르는 난수를 이용하여 4행 5열 구조의 다차원 배열을 생성")
+np.random.seed(42) # 랜덤 시드 설정
 arr = np.random.randn(4, 5)
 print("arr:\n", arr)
 
@@ -47,13 +48,15 @@ print("2.6 최솟값:")
 print(np.min(arr))
 
 print("2.7 1사분위 수:")
-print(np.percentile(arr, 25))
+print(np.percentile(arr, 25)) # 하위 4분의 1지점, 내부적으로 정렬(오른차순) 후 함수 실행
+
+print("lowerdata: \n", (lowerdata := arr[arr <= np.percentile(arr, 25)]))
 
 print("2.8 2사분위 수:")
-print(np.percentile(arr, 50))
+print(np.percentile(arr, 50)) # 하위 4분의 2지점(중위수), 내부적으로 정렬(오른차순) 후 함수 실행
 
 print("2.9 3사분위 수:")
-print(np.percentile(arr, 75))
+print(np.percentile(arr, 75)) # 하위 4분의 3지점, 내부적으로 정렬(오른차순) 후 함수 실행
 
 print("2.10 요소값 누적합 :")
 print(np.cumsum(arr))

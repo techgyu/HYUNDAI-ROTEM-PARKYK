@@ -112,9 +112,25 @@ print(dataframe)
 
 # 6 - 2) tips.csv 파일을 읽어 아래와 같이 처리하시오.
 
-#      - 파일 정보 확인
-#      - 앞에서 3개의 행만 출력
-#      - 요약 통계량 보기
-#      - 흡연자, 비흡연자 수를 계산  : value_counts()
-#      - 요일을 가진 칼럼의 유일한 값 출력  : unique()
-#           결과 : ['Sun' 'Sat' 'Thur' 'Fri']
+tips = pd.read_csv('./code/0806/연습문제/tips.csv')
+
+# 파일 정보 확인
+print("tips.csv 파일 정보:")
+print(tips.info())
+
+# 앞에서 3개의 행만 출력
+print("\n앞에서 3개의 행:")
+print(tips.head(3))
+
+# 요약 통계량 보기
+print("\n요약 통계량:")
+print(tips.describe())
+
+# 흡연자, 비흡연자 수를 계산 : value_counts()
+print("\n흡연자, 비흡연자 수:")
+print(tips['smoker'].value_counts())
+
+# 요일을 가진 칼럼의 유일한 값 출력 : unique()
+print("\n요일 칼럼의 유일한 값:")
+print(tips['day'].unique())
+# 결과 : ['Sun' 'Sat' 'Thur' 'Fri']

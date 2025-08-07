@@ -1,0 +1,968 @@
+
+
+//플래시를 삽입하는 스크립트.
+function flash(c,d,e) {
+//alert(e);
+ var flash_tag = "";
+ flash_tag = '<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ';
+ flash_tag +='codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" ';
+ flash_tag +='WIDTH="'+c+'" HEIGHT="'+d+'" >';
+ flash_tag +='<param name="movie" value="'+e+'">';
+ flash_tag +='<param name="quality" value="high">';
+ flash_tag +='<param name="wmode" value="transparent">';
+ flash_tag +='<embed src="'+e+'" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" ';
+ flash_tag +='type="application/x-shockwave-flash"  WIDTH="'+c+'" HEIGHT="'+d+'"></embed></object>'
+
+ document.write(flash_tag);
+
+}
+
+//이미지 변환
+function mouse(fVal,fImg)
+{
+	fVal.src = fImg;
+}
+
+
+//바로가기
+function GOURL(URL)
+ {
+	//top.location.href=URL;
+	location.href=URL;
+ }
+
+function GOURL1(URL)
+ {
+	location.href=URL;
+ }
+
+function GOURL2(URL)
+ {
+	parent.location.href=URL;
+ }
+
+
+//function TTGOURL1(URL)
+//{
+//	var scroll_x=top.document.body.scrollLeft
+//	var scroll_y=top.document.body.scrollTop
+//	location.href=URL+"&scroll_x="+scroll_x+"&scroll_y="+scroll_y;
+//}
+
+
+//resize
+ function init()
+ { 
+	  var doc = document.getElementById("maincenter_div"); 
+	  doc.style.top=0; 
+	  doc.style.left=0; 
+	  if(doc.offsetHeight == 0)
+	  { 
+	  }
+	  else
+	  { 
+		pageheight = doc.offsetHeight; 
+		pagewidth = doc.offsetWidth; 
+		parent.frames["hiddenBorder"].resizeTo(pagewidth,pageheight); 
+	  } 
+} 
+
+function GOinit(obj)
+{
+
+  var doc = document.getElementById("maincenter_div"); 
+	  doc.style.top=0; 
+	  doc.style.left=0; 
+	  if(doc.offsetHeight == 0)
+	  { 
+	  }
+	  else
+	  { 
+		pageheight = doc.offsetHeight; 
+		pagewidth = doc.offsetWidth; 
+		parent.frames[obj].resizeTo(pagewidth,pageheight); 
+	  } 
+
+}
+
+
+//경고창 및 포커스
+function setFocus(msg,objA)
+{
+	alert(msg);
+	objA.focus();
+}
+
+//오토포커스 (현재아이디,이동할 아이디,길이)
+function autoKey(obj1,obj2,num)
+{
+	var target1 = eval(document.getElementById(obj1));
+	var target2 = eval(document.getElementById(obj2));
+	//alert(target)
+	if (target1.value.length == num)
+	{
+		target2.focus();
+	}
+
+}
+
+//오픈윈도우
+function openWindow(theURL,winName,features) { //v2.0	
+  window.open(theURL,winName,features);
+}
+
+
+//
+function changeSelect()//이메일
+{
+	var On_Mail2 = document.getElementById("On_Mail2");
+	var On_Mail3 = document.getElementById("On_Mail3");
+	if(On_Mail3.value !='' ) 
+	{		
+			On_Mail2.value=On_Mail3.value;
+			On_Mail2.readOnly=true		
+	}	
+	else
+	{
+		On_Mail2.value='';
+		On_Mail2.readOnly=false;
+		On_Mail2.focus();
+	}
+}
+
+//
+
+function valueck()//이메일직접입력
+{
+	var On_Mail2 = document.getElementById("On_Mail2");
+	if(On_Mail2.value =='직접입력' || On_Mail2.value == "" ) 
+	{		
+		On_Mail2.value='';
+		On_Mail2.readOnly=false;
+	}	
+	else
+	{
+		On_Mail2.readOnly=true;
+	}
+
+}
+
+
+function checkdigit( checkval )
+{
+	var idx;
+	var val = new String( checkval );
+	var len = val.length;
+
+	for ( idx=0; idx < len; idx++ ) {
+		if ( val.charAt(idx) != '0' &&
+			val.charAt(idx) != '1' &&
+			val.charAt(idx) != '2' &&
+			val.charAt(idx) != '3' &&
+			val.charAt(idx) != '4' &&
+			val.charAt(idx) != '5' &&
+			val.charAt(idx) != '6' &&
+			val.charAt(idx) != '7' &&
+			val.charAt(idx) != '8' &&
+			val.charAt(idx) != '9' ) {
+
+			return false;
+		}
+	}
+
+	return true;
+}
+
+//
+//function number(){//숫자만 입력가능
+//
+//
+/////	alert( event.keyCode )
+//	if(!(event.keyCode >=48 && event.keyCode <=57||event.keyCode == 13))
+//	{
+//		event.returnValue=false
+//
+//	}else
+//	{
+//		alert("숫자만 가능합니다.")
+//	}
+//
+//}
+
+
+
+function closeView(div_name)//div close
+{		
+	var view_div1 = document.getElementById(div_name);
+	view_div1.style.display = "none";
+	//alert(div_name);
+	//init();
+}
+
+
+function PWD_VIEW(div_name,target_idx, target_number)//div close
+{		
+	var view_div1 = document.getElementById(div_name);
+	view_div1.style.display = "";
+	var PWDFRM = document.forms["PWDFORM"];
+	PWDFRM.idx_code.value=target_idx;
+	PWDFRM.PAGENUM.value=target_number;
+	//alert(target_number);
+
+	//init();
+}
+
+
+
+function V_DIV(div_name)
+{
+	//alert(div_name);
+	var view_div1 = document.getElementById(div_name);
+	
+	if (view_div1.style.display == "none")
+		{
+			view_div1.style.display = ""; 
+		}
+		else
+		{ 
+			view_div1.style.display = "none"; 
+		}
+	//init();
+}
+
+function V_DIV1(div_name)
+{
+	var view_div1 = document.getElementById(div_name);
+	view_div1.style.display = ""; 	
+	//alert("a");
+	//init();
+}
+
+
+function LEFT_DIV(div_name)
+{
+	//alert(div_name);
+	var view_div1 = document.getElementById(div_name);
+	
+	if (view_div1.style.display == "none")
+		{
+			view_div1.style.display = ""; 
+		}
+		else
+		{ 
+			view_div1.style.display = "none"; 
+		}
+	//init();
+}
+
+
+
+
+function MY_V_DIV(div_name,obj)
+{
+	//alert(div_name);
+	var view_div1 = document.getElementById(div_name);
+	
+	if (view_div1.style.display == "none")
+		{
+			view_div1.style.display = ""; 
+		}
+		else
+		{ 
+			view_div1.style.display = "none"; 
+		}
+	//GOinit(obj);
+	//parent.init();
+}
+
+
+
+function CH_DIV(div_name1,div_name2)
+{
+	var view_div1 = document.getElementById(div_name1);
+	var view_div2 = document.getElementById(div_name2);
+	view_div1.style.display = "";
+	view_div2.style.display = "none";
+	//init();
+}
+
+ //sender : 전체 선택/해제 체크박스
+//containerID : 체크박스들을 포함하는 컨터이너 개체 아이디
+//checkboxIDMatch : 체크박스들에 공통으로 포함되는 아이디 문자열
+function SelectCheckBox(sender, containerID, checkboxIDMatch)
+{
+    var checkboxContainer = document.getElementById(containerID);
+
+    var inputs = checkboxContainer.getElementsByTagName('input')
+
+    for (var i = 0; i < inputs.length; i++)
+    {
+        var item = inputs.item(i);
+		//alert(item);
+		//alert(checkboxIDMatch);
+		//alert(item.id);
+
+
+        if (item.id.indexOf(checkboxIDMatch) > -1)
+        {
+            item.checked = sender.checked;
+        }
+    }
+}
+
+  //체크박스에 id 부여후 해당id의 체크박스 선택
+
+  //selectIdCheck('wait');
+  function selectIdCheck(id){
+   var obj=eval("document.all."+id)
+   //해당콤보박스가 존재한다면
+   if(obj){
+    //콤보박스가 여러개일때
+    if(obj.length){
+     for (c=0;c<obj.length;c++)
+      obj[c].checked=!obj[c].checked;
+    }
+    //콤보박스가 한개일때
+    else{
+     obj.checked=!obj.checked;
+    }
+   }
+  }
+
+
+
+
+function chk_num(form)
+{              	
+	if (isNaN(form.value))
+	{
+		alert('숫자만 입력 가능합니다.');
+		form.value = "";
+		form.focus();
+		return false;
+	}
+}
+
+
+
+//새로고침방지
+//function doNotReload(){
+//	if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116))
+//	{
+//		event.keyCode = 0;
+//		event.cancelBubble = true;
+//		event.returnValue = false;
+//		alert("새로고침 방지");
+//	} 
+//}
+//
+//document.onkeydown = doNotReload;
+
+
+
+
+
+
+function Download_File(File_Name)
+{
+	if (confirm("파일을 다운로드 하시겠습니까?"))
+	{
+		//alert(File_Name);
+		URL = "/lib/file_download.htm?File_Name=" + File_Name;
+		location.href = URL;
+	}
+}
+
+//즐겨찾기
+function main_zel(target_url,str)
+{
+	window.external.AddFavorite(target_url,str);
+}
+//시작페이지
+function set_start(target_url)
+{
+	document.body.style.behavior = 'url(#default#homepage)';
+	document.body.setHomePage(target_url);
+}
+
+//replace
+function remString(strjArg, strjArgRemString)
+{
+	var strjRtn   = "";
+	var strjTemp  = "";
+	for (var i=0; i<strjArg.length; i++)
+	{
+		strjTemp = "" + strjArg.substring(i, i+1);
+		if (strjTemp.indexOf(strjArgRemString) == -1)
+		{
+			strjRtn += strjTemp;
+		}
+	}
+
+	return strjRtn;
+}
+
+//개월수 확인
+function checkDateTerm(monthTerm, startDT, endDT) {
+
+	if(startDT == null || startDT == "") return;
+	if(endDT == null || endDT == "") return;
+	startDT = remString(startDT, "-");
+	endDT = remString(endDT, "-");
+
+	var sYear = startDT.substring(0, 4);
+	var sMonth = startDT.substring(4, 6);
+	var sDay = startDT.substring(6, 8);
+
+	var eYear = endDT.substring(0, 4);
+	var eMonth = endDT.substring(4, 6);
+	var eDay = endDT.substring(6, 8);
+
+	if((eYear - sYear) <= 1){
+
+		if((eYear - sYear) == 1){ eMonth = parseInt(eMonth) + 12; }
+
+		if((eYear - sYear) < 0 || ((eYear - sYear) == 0 && (eMonth - sMonth) < 0)) {
+			return false;
+		}
+		if((eMonth - sMonth) == monthTerm){
+			if((eDay - sDay) >= 0){
+				return false;
+			} else return true;
+
+		} else if((eMonth - sMonth) > monthTerm){
+			return false;
+		} else return true;
+
+	} else {
+		return false;
+	}
+	return true;
+
+}
+
+function fn_emailChk(val){		//이메일 형식 체크
+	var bol = true;
+	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	if (exptext.test(val)!=true){
+		bol = false;
+	}
+	return bol;     // bol 값을 반환 . 이메일 형식이 아니면 false
+}
+
+
+
+
+
+
+
+
+
+
+function open_pop(div_name)
+{
+	//alert(div_name);
+	var main_div1 = document.getElementById(div_name);
+	var view_div1= document.getElementById("view_div");
+	
+	
+
+	var infoHeight=$("#"+div_name).height();
+	var top = ""
+
+	//alert(infoHeight);
+	top= ( $(window).scrollTop() + ($(window).height() - infoHeight) / 2 );
+	//alert(top);
+	//alert(infoHeight);
+
+	
+	if (main_div1.style.display == "none")
+	{
+			
+			var isDoc = document.compatMode;			
+			if(isDoc == "CSS1Compat"){
+				height_val = (document.documentElement.clientHeight / 2 - 150);
+
+			}else{
+				height_val = (window.document.body.clientHeight / 2 - 150);
+			}
+
+			
+
+			
+			//IE 8.0 체크
+		var ua = window.navigator.userAgent;
+		if(ua.indexOf('Trident/4.0') >= 0){
+                     // IE 8.0
+                     //alert('ie8 ok');
+//                     if(ua.indexOf('MSIE 7.0') >= 0){
+//                                // IE 8.0 & ie7 호환모드
+//                                alert('ie7 호환');
+//                     }
+//                     else {
+//                                // IE 8.0
+//                     }
+
+
+
+				height_val = height_val;
+           }
+           else if(ua.indexOf('MSIE 7.0') >= 0){
+                     // IE 7.0
+                     //alert('ie7');
+					 height_val = height_val;
+           }
+		   else if (ua.indexOf('Trident/5.0') >= 0)
+		   {	
+			//IE9.0
+				height_val = height_val - 80;
+		   }
+		   else{
+			   //ie 10, 11
+			   //alert(top);
+				height_val = top;
+		   }
+
+
+
+
+			width_val = window.document.body.clientWidth / 2 - 150;
+			
+			main_div1.style.left = width_val + 'px';
+			main_div1.style.top = height_val + 'px';
+			
+			//console.log("1:"+height_val);
+
+			main_div1.style.display = ""; 
+			
+			
+			//div_move1 = setTimeout("div_init('"+div_name+"')", 500);
+			
+			
+			view_div1.style.display = "";
+			view_div1.style.height = $(document).height()+ 'px';
+			//view_div1.style.width = "100%";
+			var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+			view_div1.style.width = device_width + "px";
+			
+			view_div1.style.filter = "alpha(opacity=50)";
+			view_div1.style.opacity = "0.5";
+			view_div1.style.top = 0;
+			view_div1.style.left = 0;
+
+
+			window.onresize = function() {
+				var infoHeight=$("#"+div_name).height();
+				var top = ""
+				top = ( $(window).scrollTop() + ($(window).height() - infoHeight) / 2 );
+				width_val = window.document.body.clientWidth / 2 - 150;
+				
+				if(ua.indexOf('Trident/4.0') >= 0){
+                     // IE 8.0
+						height_val = height_val;
+				   }
+				   else if(ua.indexOf('MSIE 7.0') >= 0){
+							 // IE 7.0
+							 //alert('ie7');
+							 height_val = height_val;
+				   }
+				   else if (ua.indexOf('Trident/5.0') >= 0)
+				   {	
+					//IE9.0
+						height_val = height_val - 80;
+				   }
+				   else{
+					   //ie 10, 11
+					   //alert(top);
+						height_val = top;
+				   }
+
+
+				
+				main_div1.style.left = width_val + 'px';
+				main_div1.style.top = height_val + 'px';
+				view_div1.style.height = $(document).height()+ 'px';
+				//view_div1.style.width = "100%";
+				var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+				view_div1.style.width = device_width + "px";
+				
+
+				rightSideBanner();
+
+
+			 }
+
+
+		}
+		else
+		{ 
+			//alert(divSetTimeout);
+			//clearTimeout(div_move1);
+			//clearTimeout(div_move2);
+			main_div1.style.display = "none"; 
+			view_div1.style.display = "none"; 
+		}
+	
+}
+
+
+
+
+
+//POPUP 브라우저 이동시 이동
+
+function div_init(obj) {   
+div_right = document.getElementById(obj);
+
+//console.log("1:"+height_val);
+
+	div_move2 = setTimeout("div_move_func('" + obj + "')", 10);
+}
+
+
+function div_move_func(obj) {
+	
+	console.log("2:"+height_val);
+
+	var view_div1= document.getElementById("view_div");
+	var isDoc = document.compatMode;			
+
+	if(isDoc == "CSS1Compat"){
+		height_val = document.documentElement.clientHeight / 2 - 150;
+	}else{
+		height_val = window.document.body.clientHeight / 2 - 150;
+	}
+
+	//console.log("3:"+height_val);
+	
+	var infoHeight=$("#"+obj).height();
+	var top = ""	
+	top= ( $(window).scrollTop() + ($(window).height() - infoHeight) / 2 );
+	console.log("4 top :"+top);
+
+	
+	
+	//IE 8.0 체크
+		var ua = window.navigator.userAgent;
+		if(ua.indexOf('Trident/4.0') >= 0){
+
+				height_val = height_val;
+           }
+           else if(ua.indexOf('MSIE 7.0') >= 0){
+                     // IE 7.0
+                     //alert('ie7');
+					 height_val = height_val;
+           }
+		   else if (ua.indexOf('Trident/5.0') >= 0)
+		   {	
+			//IE9.0
+				height_val = height_val - 80;
+		   }
+		   else{
+			   //ie 10, 11
+			   //alert(top);
+				height_val = top;
+		   }
+
+
+	width_val = window.document.body.clientWidth / 2 - 150;
+	
+	
+	//console.log("5:"+height_val);
+
+	div_right.style.left = width_val + 'px';
+	div_right.style.top = height_val + 'px';
+
+	view_div1.style.height = $(document).height()+ 'px';
+	//view_div1.style.width = "100%";
+	var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+	view_div1.style.width = device_width + "px";
+
+
+	setTimeout("div_move_func('" + obj + "')", 10);
+}
+
+
+
+
+
+
+
+
+
+
+
+function main_open_pop(div_name)
+{
+	//alert(div_name);
+	var main_div1 = document.getElementById(div_name);
+	var view_div1= document.getElementById("mainReView_div");
+	
+	
+
+	var infoHeight=$("#"+div_name).height();
+	var top = ""
+
+	//alert(infoHeight);
+	top= ( $(window).scrollTop() + ($(window).height() - infoHeight) / 2 );
+	//alert(top);
+	//alert(infoHeight);
+
+	
+	if (main_div1.style.display == "none")
+	{
+			
+			var isDoc = document.compatMode;			
+			if(isDoc == "CSS1Compat"){
+				height_val = (document.documentElement.clientHeight / 2 - 200);
+
+			}else{
+				height_val = (window.document.body.clientHeight / 2 - 200);
+			}
+
+			
+			//IE 8.0 체크
+		var ua = window.navigator.userAgent;
+		if(ua.indexOf('Trident/4.0') >= 0){
+   
+				height_val = height_val;
+           }
+           else if(ua.indexOf('MSIE 7.0') >= 0){
+                     // IE 7.0
+                     //alert('ie7');
+					 height_val = height_val;
+           }
+		   else if (ua.indexOf('Trident/5.0') >= 0)
+		   {	
+			//IE9.0
+				height_val = height_val - 80;
+		   }
+		   else{
+			   //ie 10, 11
+			   //alert(top);
+				height_val = top;
+		   }
+
+
+
+
+			width_val = window.document.body.clientWidth / 2 - 220;
+			
+			main_div1.style.left = width_val + 'px';
+			main_div1.style.top = 350 + 'px';
+			main_div1.style.display = ""; 
+			
+
+			view_div1.style.display = "";
+			view_div1.style.height = $(document).height()+ 'px';
+			
+			var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+			view_div1.style.width = device_width + "px";
+			
+			view_div1.style.filter = "alpha(opacity=50)";
+			view_div1.style.opacity = "0.5";
+			view_div1.style.top = 0;
+			view_div1.style.left = 0;
+
+
+			window.onresize = function() {
+				var infoHeight=$("#"+div_name).height();
+				var top = ""
+				top = ( $(window).scrollTop() + ($(window).height() - infoHeight) / 2 );
+				width_val = window.document.body.clientWidth / 2 - 220;
+				
+				if(ua.indexOf('Trident/4.0') >= 0){
+            
+						height_val = height_val;
+				   }
+				   else if(ua.indexOf('MSIE 7.0') >= 0){
+							 height_val = height_val;
+				   }
+				   else if (ua.indexOf('Trident/5.0') >= 0)
+				   {	
+			
+						height_val = height_val - 80;
+				   }
+				   else{
+						height_val = top;
+				   }
+
+
+
+				main_div1.style.left = width_val + 'px';
+				main_div1.style.top = 350 + 'px';
+
+
+
+				view_div1.style.height = $(document).height()+ 'px';				
+				var device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+				view_div1.style.width = device_width + "px";
+			
+				rightSideBanner();
+			 }
+
+
+		}
+		else
+		{ 
+			main_div1.style.display = "none"; 
+			view_div1.style.display = "none"; 
+		}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//유효성 체크
+function checkResNo(resNo1, resNo2) {
+	var i;
+
+	var total = 0;
+	var key = new Array(2,3,4,5,6,7,8,9,2,3,4,5);
+	var resNo = resNo1.value + resNo2.value;
+
+	if (resNo.length == 13) {
+		for (i=0; i<12; i++) {
+			total = total + (eval(resNo.charAt(i)) * key[i]);
+		}
+		result = (11 - (total % 11)) % 10;
+
+		if (eval(resNo.charAt(12)) != result) {
+			alert ("유효한 주민등록번호가 아닙니다.");
+			resNo1.value = "";
+			resNo2.value = "";
+			resNo1.focus();
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	else if (resNo1.value.length != 6) {
+		alert("주민등록번호 앞자리는 6자리입니다. 다시 입력하세요.");
+		resNo1.value = "";
+		resNo1.focus();
+		return false;
+	}
+	else if (resNo2.value.length != 7) {
+		alert("주민등록번호 뒷자리는 7자리입니다. 다시 입력하세요.");
+		resNo2.value = "";
+		resNo2.focus();
+		return false;
+	}
+}
+
+//유효성 체크
+
+
+
+
+
+
+
+
+
+function jsSetComa(str_result){
+ var reg = /(^[+-]?\d+)(\d{3})/;   // 정규식
+ str_result += '';  // 숫자를 문자열로 변환
+
+ while (reg.test(str_result)){
+  str_result = str_result.replace(reg, '$1' + ',' + '$2');
+ }
+
+ 
+
+ return str_result;
+}
+
+
+// 콤마(,) 제거 ##################################################
+function stripComma(str) {
+    var re = /,/g;
+    return str.replace(re, "");
+}
+
+
+// 숫자 3자리수마다 콤마(,) 찍기 ##################################################
+function formatComma(num, pos) {
+	if (!pos) pos = 2;  //소숫점 이하 자리수
+
+	var re = /(-?\d+)(\d{3}[,.])/;
+
+	var strNum = stripComma(num.toString());
+	var arrNum = strNum.split(".");
+
+	var commaNum = ""
+
+	arrNum[0] += ".";
+
+    while (re.test(arrNum[0])) {
+        arrNum[0] = arrNum[0].replace(re, "$1,$2");
+    }
+
+	if (arrNum.length > 1) {
+		if (arrNum[1].length > pos) {
+			arrNum[1] = arrNum[1].substr(0, pos);
+		}
+		else {
+			arrNum[1] = arrNum[1] + "000000000"
+			arrNum[1] = arrNum[1].substr(0, pos);
+		}
+		return arrNum.join("");
+	}
+	else {
+		if (pos == 0)	{
+			return arrNum[0].split(".")[0];	
+		}
+		else {
+			for (i=0; i< pos; i++)	{
+				commaNum += "0"
+			}
+			return arrNum[0] + commaNum;	
+		}
+	}
+}
+
+
+//한글 포함여부 확인 포함일경우 true, 아니면 false
+function isKor(str) {		
+	for(var i=0; i<str.length; i++)
+	{
+		var c = escape(str.charAt(i));
+		 if(c.indexOf("%u") != -1)//한글 혹은 기타
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+

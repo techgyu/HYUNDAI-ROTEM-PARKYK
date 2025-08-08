@@ -6,6 +6,11 @@ import time
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
+# 로그 저장 활성화 여부
+SAVE_LOG = False  # False로 바꾸면 로그 저장 안 함
+# 8. 읽어온 거 출력
+PRINT_MENU_PRICE = False # False로 바꾸면 출력 안 함
+PRINT_DATAFRAME = False # False로 바꾸면 출력 안 함
 
 # 셀레니움을 사용해야 하는 이유
 # - 봉구스밥버거의 메뉴 정보는 동적으로 로딩되는 웹 페이지로, 일반적인 HTTP 요청으로는 HTML 소스를 가져올 수 없습니다.
@@ -40,7 +45,6 @@ soup = BeautifulSoup(html, "html.parser")
 
 # 5. (로그) soup 파일의 내용을 log_downloaded_menu.html로 저장
 # 로그 저장 활성화 여부
-SAVE_LOG = False  # False로 바꾸면 로그 저장 안 함
 if SAVE_LOG:
     with open("./01_big_data_machine_learning/code/0807/연습문제/log_downloaded_menu.html", "w", encoding="utf-8") as f:
         f.write(str(soup.prettify()))
@@ -53,7 +57,6 @@ names = [tag.text.strip() for tag in soup.select('ul#bonmenu_list li div.txtbox 
 prices = [int(tag.text.strip().replace(',', '')) for tag in soup.select('ul#bonmenu_list li div.txtbox > div.price')]
 
 # 8. 읽어온 거 출력
-PRINT_MENU_PRICE = False # False로 바꾸면 출력 안 함
 if PRINT_MENU_PRICE:
     print("메뉴명:", names)
     print("가격:", prices)
@@ -66,7 +69,6 @@ df = pd.DataFrame({
     '설명': ['저는 봉구킹을 좋아합니다!'] * len(names)
 })
 
-PRINT_DATAFRAME = False # False로 바꾸면 출력 안 함
 if PRINT_DATAFRAME:
     print(df)
 
@@ -137,7 +139,7 @@ plt.show()
 # 스타일 적용 (seaborn 스타일)
 sns.set_theme(style="whitegrid", font="Malgun Gothic", rc={"axes.unicode_minus":False})
 
-plt.figure(figsize=(16, 12))
+plt.figure(figsize=(16, 12))# # 인치
 
 # 1. 선 그래프 (가격 추이)
 plt.subplot(3, 2, 1)

@@ -19,7 +19,8 @@ LOG_3_TRAIN_SPECIFIC = False # 연월연시 데이터 생성 후 train 데이터
 # 그래프 출력 여부(True, False)
 GRAPH_MATRIX = False # 결측치 시각화 여부
 GRAPH_BAR = False # 막대 그래프 시각화 여부
-GRAPH_TIME = False  # 연월연시 데이터로 시각화 여부
+GRAPH_DATETIME = False  # 연월연시 데이터로 시각화 여부
+GRAPH_BOXPLOT = False # Boxplot 시각화 여부 - 대여량 - 계절별, 시간별 근무일 여부에 따른 대여량
 
 # -------------- 로그, 출력 설정 --------------
 
@@ -39,8 +40,8 @@ if LOG_TRAIN_SUMMARY:
     print("\n기술 통계:\n", train.describe()) # 각 컬럼의 기술 통계
 
 if LOG_TRAIN_SPECIFIC:
-    print("\n상위 5개 데이터:\n", train.head())
-    print("\n하위 5개 데이터:\n", train.tail())
+    print("\n상위 10개 데이터:\n", train.head(10))
+    print("\n하위 10개 데이터:\n", train.tail(10))
 
 if LOG_TRAIN_CHECK_NULL:
     print("\n결측치 정보:\n", train.isnull().sum())
@@ -67,7 +68,7 @@ if LOG_3_TRAIN_SPECIFIC:
     print(train.head()) # 상위 5개 데이터 확인
 
 # 4. 연월연시 데이터로 시각화
-if GRAPH_TIME:
+if GRAPH_DATETIME:
     figure, (ax1, ax2, ax3, ax4) = plt.subplots(nrows=1, ncols=4) # 1행 4열의 서브플롯 생성
     figure.set_size_inches(15, 5) # 서브플롯 크기 설정
     sns.barplot(data = train, x = 'year', y = 'count', ax = ax1) # 연도별 자전거 대여량
@@ -81,3 +82,21 @@ if GRAPH_TIME:
     plt.show()
 
 # 5. Boxplot 시각화 - 대여량 - 계절별, 시간별 근무일 여부에 따른 대여량
+# - Boxplot: x - 분류 기준, y - 값을 주면, 중앙값, 사분위수(Q1, Q3), IQR, 이상치 등을 파악하여 박스플롯을 그려줌
+# - 박스의 의미: 하위 25% ~ 상위 75% 까지의 값의 범위
+# - 박스 안 굵은 선: 순서대로 값을 나열했을 때 가운데 값
+# - 박스 밖의 점들: 데이터 분포에서 비정상적으로 튀는 값
+# - 박스 아래 / 위의 선: 
+#   - 각 수염(whisker)은 박스(1사분위수 Q1 ~ 3사분위수 Q3) 바깥쪽으로 뻗어 있는 선입니다.
+#   - 아래쪽 수염은 Q1 - 1.5×IQR보다 크거나 같은 값 중에서 가장 작은 값까지,
+#   - 위쪽 수염은 Q3 + 1.5×IQR보다 작거나 같은 값 중에서 가장 큰 값까지를 연결합니다.
+#   - 즉, 수염은 이상치가 아닌 데이터의 최소값과 최대값을 나타냅니다.
+#   - 이 범위를 벗어난 값들은 이상치(Outlier)로 간주되어 점(●)으로 따로 표시됩니다.
+if GRAPH_BOXPLOT:
+    figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2) # 1행 2열의 서브플롯 생성
+    figure.set_size_inches(15, 5) # 서브플롯 크기 설정
+    sns.boxplot(data = train, x = 'season', y = 'count', ax = ax1) # 계절을 기준으로한 자전거 대여량
+    sns.boxplot(data = train, x = 'workingday', y = 'count', ax = ax2) # 근무일을 기준으로 한 따른 자전거 대여량
+    ax1.set(ylabel='건수', title='계절별 자전거 대여량')
+    ax2.set(ylabel='건수', title='근무일 여부에 따른 자전거 대여량')
+    plt.show()

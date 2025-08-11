@@ -67,6 +67,11 @@ try:
 except Exception as e:
     print("SQL 로딩 오류:", e)
     sys.exit()
+finally:
+    try:
+        conn.close()
+    except:
+        pass
 
 # 4. 각각의 테이블을 DataFrame으로 변환
 buser_df = pd.DataFrame(buser.fetchall(), columns=[i[0] for i in buser.description])

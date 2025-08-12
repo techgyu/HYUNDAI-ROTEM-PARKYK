@@ -15,12 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path
-from myapp import views
-urlpatterns = [
-    path("admin/", admin.site.urls),
+from django.contrib import admin  # 관리자 사이트 모듈 임포트
+from django.urls import path, include  # URL 패턴 함수 및 include 임포트
+from myapp import views  # myapp의 views 임포트
 
-    path("", views.main, name = "main"),
-    path("showdata/", views.showdata, name = "show"),
+urlpatterns = [
+    path("admin/", admin.site.urls),  # /admin/ 요청 시 관리자 사이트로 연결
+
+    path("", views.index, name="index"),  # 루트 URL 요청 시 index 뷰 호출
+    path("show/", include('myapp.urls')),  # /show/로 시작하는 URL은 myapp의 urls.py에 위임
 ]

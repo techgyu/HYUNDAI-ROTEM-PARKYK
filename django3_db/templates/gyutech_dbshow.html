@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gyutech DB Show</title>
+    <!-- Echarts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 15px;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 6px 10px;
+            text-align: center;
+        }
+        th {
+            background: #f2f2f2;
+        }
+        /* 표가 너무 넓을 때 스크롤 */
+        .table-wrap {
+            overflow-x: auto;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; gap: 32px; align-items: flex-start;">
+        <div class="table-wrap">
+            <h3>직원 목록</h3>
+            {{ join_html|safe }}
+        </div>
+        <div class="table-wrap">
+            <h3>성별, 직급별 빈도표</h3>
+            {{ cross_table_html|safe }}
+        </div>
+    </div>
+    <h2>부서별 연봉합 및 평균 (ECharts)</h2>
+    <div id="bar-chart" style="width: 700px; height: 400px;"></div>
+    <script>
+        const labels = {{ labels_json|safe }};
+        const sumSeries = {{ sum_series_json|safe }};
+        const meanSeries = {{ mean_series_json|safe }};
+
+        const el = document.getElementById("bar-chart");
+        const chart = echarts.init(el);
+        const option = {
+            tooltip: {trigger: 'axis'},
+            legend: {data: ['연봉합', '연봉평균'],
+                bottom: -5  // 하단에 legend 배치 (숫자가 클수록 더 아래)
+            },
+            grid: {left:48, right:16, top:24, bottom:40},
+            xAxis: {
+                type: 'category',
+                data: labels,
+                axisLabel: {interval: 'auto'}
+            },
+            yAxis: {type:'value', name:'연봉(만원)'},
+            series: [
+                {name: '연봉합', type: 'bar', data: sumSeries},
+                {name: '연봉평균', type: 'bar', data: meanSeries}
+            ]
+        };
+        chart.setOption(option);
+    </script>
+</body>
+</html>

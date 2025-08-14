@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",  # 세션 프레임워크
     "django.contrib.messages",  # 메시지 프레임워크
     "django.contrib.staticfiles",  # 정적 파일 관리
+    "myapp"
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",  # 보안 미들웨어
     "django.contrib.sessions.middleware.SessionMiddleware",  # 세션 미들웨어
     "django.middleware.common.CommonMiddleware",  # 일반 미들웨어
-    "django.middleware.csrf.CsrfViewMiddleware",  # CSRF 방지 미들웨어
+    "django.middleware.csrf.CsrfViewMiddleware",  # CSRF 방지 미들웨어: 서버가 특정 문자를 서버로 보내면, 클라이언트는 이를 검증하여 공격을 방지함
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # 인증 미들웨어
     "django.contrib.messages.middleware.MessageMiddleware",  # 메시지 미들웨어
     "django.middleware.clickjacking.XFrameOptionsMiddleware",  # 클릭재킹 방지 미들웨어
@@ -79,8 +80,17 @@ WSGI_APPLICATION = "mainapp.wsgi.application"  # WSGI 애플리케이션 경로
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",  # 데이터베이스 엔진
-        "NAME": BASE_DIR / "db.sqlite3",  # 데이터베이스 파일 경로
+        "ENGINE": "django.db.backends.mysql",  # 데이터베이스 엔진
+        "NAME": "mydb",
+        "USER": "root",
+        "PASSWORD": "1234",
+        "HOST": "localhost",
+        "PORT": "3306",
+        "OPTIONS":{
+            "charset": "utf8mb4",
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+            
+        }
     }
 }
 

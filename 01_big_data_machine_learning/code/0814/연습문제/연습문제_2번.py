@@ -14,18 +14,6 @@ import MySQLdb
 import pickle
 import sys
 
-def pay_map(pay):
-    if 1000 <= pay <= 2999:
-        return 1
-    elif 3000 <= pay <= 4999:
-        return 2
-    elif 5000 <= pay <= 6999:
-        return 3
-    elif pay >= 7000:
-        return 4
-    else:
-        return None
-
 try:
     with open('./01_big_data_machine_learning/data/mymaria.dat', 'rb') as obj:
         config = pickle.load(obj)
@@ -70,6 +58,7 @@ try:
         print('채택')
 
     print(chi2, p, dof, expected)
+    print("자유도: ", dof)
     # Test statistic: 37.40, p-value: 0.0002
     # 메시지 출력
     msg = "Test statistic: {:.2f}, p-value: {:.4f}".format(chi2, p)

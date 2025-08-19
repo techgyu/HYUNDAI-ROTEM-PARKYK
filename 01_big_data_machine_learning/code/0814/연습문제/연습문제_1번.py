@@ -27,5 +27,5 @@ print(chi2, p, dof, expected)
 # Test statistic: 2.77, p-value: 0.2507
 msg = "Test statistic: {:.2f}, p-value: {:.4f}".format(chi2, p)
 print(msg.format(chi2, p))
-# 결론: p-value(0.2507) < 유의수준(0.05) 이므로 귀무가설을 기각한다.
-# 따라서, 부모의 학력 수준과 자녀의 대학 진학 여부는 관련이 있다.
+# 결론: p-value(0.2507) > 유의수준(0.05) 이므로 귀무가설을 기각하지 못한다.
+# 따라서, 부모의 학력 수준과 자녀의 대학 진학 여부는 관련이 없다.

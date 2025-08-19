@@ -24,7 +24,7 @@ print(stats.chisquare(data))
 
 #Power_divergenceResult(statistic=np.float64(14.200000000000001), pvalue=np.float64(0.014387678176921308))
 # 카이제곱: 14.2, p-value: 0.0144
-# 결론: 유의수준(0.05 < p-value) 귀무 기각
+# 결론: 유의수준(0.05 > p-value) 귀무 기각
 # 주사위는 게임에 적합하지 않다.
 # 관측값은 우연히 발생한 것이 아니라, 어떠한 원인에 의해 발생한 얻어진 값이다.
 print(stats.chisquare(data, exp))

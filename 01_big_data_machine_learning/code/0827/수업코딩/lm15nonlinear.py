@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.linear_model import LinearRegression # 선형, 다항회귀 모델 작성용
 from sklearn.preprocessing import PolynomialFeatures # 다항회귀 모델 작성용
+np.set_printoptions(suppress=True) # e말고 소수점으로 나옴
 
 # 1. 데이터 준비
 x = np.array([257, 270, 294, 320, 342, 368, 396, 446, 480, 580])[:, np.newaxis] # 1차원 -> 2차원 변환

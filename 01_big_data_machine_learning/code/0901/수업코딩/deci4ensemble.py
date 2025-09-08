@@ -70,3 +70,19 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 print(classification_report(y_test, vpred, digits=4))
 print(confusion_matrix(y_test, vpred))
 print(roc_auc_score(y_test, voting.predict_proba(x_test)[:, 1]))
+
+# GridSearchCV로 최적의 파라미터 찾기
+from sklearn.model_selection import GridSearchCV
+param_grid = {
+    'LR__logisticregression__C': [0.1, 1.0, 10.0],
+    'KNN__kneighborsclassifier__n_neighbors': [3, 5, 7],
+    'DT__decisiontreeclassifier__max_depth': [3, 5, 7, 9]
+}
+
+gs = GridSearchCV(estimator=voting, param_grid=param_grid, cv=cv, scoring='accuracy')
+gs.fit(x_train, y_train)
+print('best params: ', gs.best_params_)
+print('best cv accuracy : ', gs.best_score_)
+best_voting = gs.best_estimator_
+print('test accuracy(best) : ', accuracy_score(y_test, best_voting.predict(x_test)))
+print('test ROC_AUC(best) : ', roc_auc_score(y_test, best_voting.predict_proba(x_test)[:, 1]))

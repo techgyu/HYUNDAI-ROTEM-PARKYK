@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-container img {
+            height: 36px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 60px);
+            background: white;
+            border-right: 1px solid #dee2e6;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar h4 {
+            font-size: 16px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            color: #495057;
+            padding: 10px 20px;
+            border-radius: 0;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+
+        .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-padding {
+            padding: 20px;
+        }
+
+        .dashboard-card-content {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        /* Table */
+        .table {
+            font-size: 14px;
+        }
+
+        .table-light th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header d-flex justify-content-between align-items-center px-4 py-2">
+        <!-- 왼쪽: 회사 로고 -->
+        <div class="logo-container">
+            <a href="/">
+                <img src="company_logo.png" alt="Company Logo" height="36">
+            </a>
+        </div>
+
+        <!-- 오른쪽: 사용자 메뉴 -->
+        <div class="d-flex align-items-center gap-3">
+            <!-- 사용자 프로필 드롭다운 -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" 
+                   id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="defaultimage.png" alt="프로필" class="rounded-circle me-2" width="36" height="36">
+                    <span class="fw-semibold">사용자 님</span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end mt-2 shadow rounded-3 border-0 px-3 py-3" 
+                    aria-labelledby="userDropdown" style="min-width: 250px;">
+                    <!-- 프로필 정보 -->
+                    <li class="pb-3 border-bottom small text-muted">
+                        <div class="mb-2"><strong>부서:</strong> 개발팀</div>
+                        <div class="mb-2">
+                            <strong>직책:</strong>
+                            <span class="badge bg-primary">개발자</span>
+                        </div>
+                    </li>
+
+                    <!-- 메뉴 항목 -->
+                    <li class="mt-3">
+                        <a class="dropdown-item d-flex align-items-center gap-2 rounded py-2" href="/profile/edit">
+                            <i class="bi bi-person-gear text-secondary"></i> <span>정보 변경</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center gap-2 rounded py-2 text-danger" href="/logout">
+                            <i class="bi bi-box-arrow-right"></i> <span>로그아웃</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4 class="text-uppercase text-center">메뉴</h4>
+        <ul class="nav flex-column">
+            <!-- 공통 메뉴 -->
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center active" href="/">
+                    <i class="bi bi-house-door-fill me-2"></i> 홈
+                </a>
+            </li>
+            
+            <!-- 서류 관리 메뉴 -->
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" data-bs-toggle="collapse" href="#documentsMenu" 
+                   role="button" aria-expanded="false" aria-controls="documentsMenu">
+                    <i class="bi bi-file-earmark-text me-2"></i> 서류 관리
+                </a>
+                <div class="collapse ps-3" id="documentsMenu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/documents/list">서류 목록</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/documents/create">서류 신청</a></li>
+                    </ul>                    
+                </div>
+            </li>
+
+            <!-- 인사 관리 메뉴 -->
+            <li class="nav-item mb-2">
+                <a class="nav-link d-flex align-items-center" data-bs-toggle="collapse" href="#hrMenu" 
+                   role="button" aria-expanded="false" aria-controls="hrMenu">
+                    <i class="bi bi-folder me-2"></i> 인사 관리
+                </a>
+                <div class="collapse ps-3" id="hrMenu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/hr/attendance">근태 관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hr/vacation">휴가 신청</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <!-- 페이지 제목 -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="h3 mb-0">대시보드</h1>
+                    <p class="text-muted">시스템 개요 및 주요 정보</p>
+                </div>
+            </div>
+
+            <!-- 카드 그리드 -->
+            <div class="row">
+                <!-- 공지사항 카드 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px; overflow-y: auto;">
+                        <h6 class="dashboard-card-content mb-3">
+                            📢 공지사항
+                            <a href="/notices" class="btn btn-sm btn-outline-primary ms-2">더보기</a>
+                        </h6>
+                        
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item px-0 py-2 border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-truncate me-2">시스템 점검 안내</span>
+                                    <small class="text-muted">2025-09-01</small>
+                                </div>
+                            </div>
+                            <div class="list-group-item px-0 py-2 border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-truncate me-2">휴가 신청 관련 안내</span>
+                                    <small class="text-muted">2025-08-30</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 근태 현황 카드 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px; overflow-y: auto;">
+                        <h6 class="dashboard-card-content mb-3">
+                            👥 부서 출근 현황
+                        </h6>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>이름</th>
+                                        <th>직책</th>
+                                        <th>상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>홍길동</td>
+                                        <td>팀장</td>
+                                        <td><span class="badge bg-success">출근</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>김철수</td>
+                                        <td>대리</td>
+                                        <td><span class="badge bg-warning">휴가</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 출퇴근 기록 카드 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px;">
+                        <h6 class="dashboard-card-content mb-3">⏰ 출퇴근 기록</h6>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            <div class="text-center">
+                                <button id="checkin-btn" class="btn btn-primary w-100 fw-bold py-2">출근하기</button>
+                                <div id="checkin-time" class="mt-1 text-muted" style="font-size: 13px;">-</div>
+                            </div>
+                            <div class="text-center">
+                                <button id="checkout-btn" class="btn btn-secondary w-100 fw-bold py-2">퇴근하기</button>
+                                <div id="checkout-time" class="mt-1 text-muted" style="font-size: 13px;">-</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-dark btn-sm w-100">주간 기록 보기</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 휴가 현황 카드 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px;">
+                        <h6 class="dashboard-card-content mb-3">
+                            🏖️ 나의 연차현황
+                            <a href="/vacation/request" class="btn btn-sm btn-outline-primary ms-2">바로가기</a>
+                        </h6>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>총 연차</th>
+                                        <th>사용 연차</th>
+                                        <th>남은 연차</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-primary">15일</td>
+                                        <td class="table-warning">3일</td>
+                                        <td class="table-success">12일</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 빈 카드 (확장용) -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px;">
+                        <h6 class="dashboard-card-content mb-3">📊 추가 기능</h6>
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                            <p class="text-muted">기능을 추가할 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 빈 카드 (확장용) -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-padding" style="height: 280px;">
+                        <h6 class="dashboard-card-content mb-3">⚙️ 설정</h6>
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                            <p class="text-muted">설정 메뉴를 추가할 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 현재 URL 경로에 따른 메뉴 활성화
+            const currentPath = window.location.pathname;
+            document.querySelectorAll(".nav-link").forEach(link => {
+                if (link.getAttribute("href") === currentPath) {
+                    link.classList.add("active");
+                    
+                    // 상위 메뉴 열기
+                    let parentCollapse = link.closest(".collapse");
+                    if (parentCollapse) {
+                        parentCollapse.classList.add("show");
+                        const parentLink = parentCollapse.previousElementSibling;
+                        if (parentLink) {
+                            parentLink.setAttribute("aria-expanded", "true");
+                        }
+                    }
+                }
+            });
+
+            // 출퇴근 버튼 기능 (예시)
+            document.getElementById('checkin-btn').addEventListener('click', function() {
+                if (confirm("출근 시간을 기록하시겠습니까?")) {
+                    const now = new Date();
+                    const timeString = now.toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    document.getElementById('checkin-time').textContent = timeString;
+                    this.disabled = true;
+                    alert('출근이 기록되었습니다.');
+                }
+            });
+
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                if (confirm("퇴근 시간을 기록하시겠습니까?")) {
+                    const now = new Date();
+                    const timeString = now.toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    document.getElementById('checkout-time').textContent = timeString;
+                    this.disabled = true;
+                    alert('퇴근이 기록되었습니다.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

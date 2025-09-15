@@ -1,0 +1,13 @@
+{
+  "terminal.integrated.profiles.windows": {
+    "Anaconda TensorGPU": {
+      "source": "PowerShell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "conda activate tensor_gpu"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Anaconda TensorGPU"
+}

@@ -51,7 +51,8 @@ def create_model_func(input_dim, out_dim, out_nodes, n, model_name = 'model'):
         model.add(Input(shape=(input_dim,)))
         for _ in range(n):
             model.add(Dense(10, activation='relu'))
-        model.add(Dense(out_nodes, activation='softmax'))
+        model.add(Dense(out_dim, activation='softmax'))
+        
         model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
         return model
 [create_model_func(n_features, n_classes, 10, n, 'model_{}'.format(n)) for n in range(1, 4)]

@@ -81,6 +81,7 @@ print("bartlett: ", stats.bartlett(score1, score2, score3).pvalue) # 등분산�
 
 print('------------')
 # 교차표 등 작성 가능 ...
+print("dataaaaaaaaaaaa: \n", data)
 reg = ols("score ~ C(method)", data=data).fit() # 단일 회귀 모델 작성
 # reg = ols("data[score] ~ C(data['method'])", data=data).fit() # 단일 회귀 모델 작성
 

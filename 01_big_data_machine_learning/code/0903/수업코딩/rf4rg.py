@@ -17,6 +17,7 @@ df = housing.frame # as_frame = True 때문에 가능
 print(df.head(2))
 
 # feature / label로 분리
+print("dddddddddddddddd", df)
 x = df.drop('MedHouseVal', axis=1)
 y = df['MedHouseVal']
 

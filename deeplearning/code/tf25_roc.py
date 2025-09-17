@@ -45,6 +45,13 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input
 
 def create_model_func(input_dim, out_dim, out_nodes, n, model_name = 'model'):
-    print(input_dim, out_dim, out_nodes, n, model_name)
-
-[create_model_func(n_features, n_classes, 10, n, 'model_{}'.format(n)) for n in range(3)]
+    # print(input_dim, out_dim, out_nodes, n, model_name)
+    def create_model():
+        model = Sequential(name=model_name)
+        model.add(Input(shape=(input_dim,)))
+        for _ in range(n):
+            model.add(Dense(10, activation='relu'))
+        model.add(Dense(out_nodes, activation='softmax'))
+        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+        return model
+[create_model_func(n_features, n_classes, 10, n, 'model_{}'.format(n)) for n in range(1, 4)]
